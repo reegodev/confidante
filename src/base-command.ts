@@ -2,7 +2,7 @@ import {Command} from '@oclif/core'
 import {readFileSync, realpathSync, writeFileSync} from 'node:fs'
 import {AdapterName, adapters, BaseAdapter} from './adapters'
 
-const CONFIG_NAME = '.envshare.json'
+const CONFIG_NAME = '.confidante.json'
 
 export interface Config {
   adapter: AdapterName

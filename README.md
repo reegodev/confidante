@@ -1,10 +1,10 @@
-# envshare
+# Confidante
 Share your environment files through password managers
 
 ## Quick Start
 
 ```bash
-npx envshare --help
+npx confidante --help
 ```
 
 ## Usage
@@ -12,19 +12,19 @@ npx envshare --help
 ### Push an environment file to the password manager
 
 ```bash
-npx envshare push [FILEPATH] [ENTRYNAME] [-a <adapter>] [-v <vault>]
+npx confidante push [FILEPATH] [ENTRYNAME] [-a <adapter>] [-v <vault>]
 ```
 
 ### Pull an environment file from the password manager
 
 ```bash
-npx envshare pull [FILEPATH] [ENTRYNAME] [-a <adapter>] [-v <vault>]
+npx confidante pull [FILEPATH] [ENTRYNAME] [-a <adapter>] [-v <vault>]
 ```
 
 ## Shared configuration
 
 You use a shared configuration to omit command arguments.<br>
-Create a file named `.envshare.json` in the root of your project and add the following content:
+Create a file named `.confidante.json` in the root of your project and add the following content:
 
 ```json
 {
@@ -40,8 +40,8 @@ Create a file named `.envshare.json` in the root of your project and add the fol
 Then your commands will be as simple as
   
 ```bash
-npx envshare push
-npx envshare pull
+npx confidante push
+npx confidante pull
 ```
 
 ## Available adapters
@@ -53,16 +53,15 @@ npx envshare pull
 Push a .env file to the password manager
 
 ```bash
-npx envshare push .env "Local .env" -a 1password -v "My project"
+npx confidante push .env "Local .env" -a 1password -v "My project"
 ````
 
 Push a Rails application.yml to the password manager
 
 ```bash
-npx envshare push config/application.yml "Rails application.yml" -a 1password -v "My project"
+npx confidante push config/application.yml "Rails application.yml" -a 1password -v "My project"
 ```
 
 ## License
 
 [MIT](https://opensource.org/licenses/MIT)
-

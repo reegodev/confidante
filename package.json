@@ -1,15 +1,15 @@
 {
-  "name": "envshare",
-  "version": "0.1.0",
-  "description": "Share your .env files through password managers",
+  "name": "confidante",
+  "version": "0.2.0",
+  "description": "Share your environment files through password managers",
   "author": "Matteo Rigon @reegodev",
   "bin": {
-    "envshare": "./bin/run"
+    "confidante": "./bin/run"
   },
-  "homepage": "https://github.com/reegodev/envshare",
+  "homepage": "https://github.com/reegodev/confidante",
   "license": "MIT",
   "main": "dist/index.js",
-  "repository": "reegodev/envshare",
+  "repository": "reegodev/confidante",
   "files": [
     "/bin",
     "/dist",
@@ -39,22 +39,12 @@
     "typescript": "^4.4.3"
   },
   "oclif": {
-    "bin": "envshare",
-    "dirname": "envshare",
+    "bin": "confidante",
+    "dirname": "confidante",
     "commands": "./dist/commands",
     "plugins": [
-      "@oclif/plugin-help",
-      "@oclif/plugin-plugins"
-    ],
-    "topicSeparator": " ",
-    "topics": {
-      "push": {
-        "description": "Push an environment file into the password manager"
-      },
-      "pull": {
-        "description": "Pull an environment file from the password manager"
-      }
-    }
+      "@oclif/plugin-help"
+    ]
   },
   "scripts": {
     "build": "shx rm -rf dist && tsc -b",
@@ -68,9 +58,14 @@
   "engines": {
     "node": ">=12.0.0"
   },
-  "bugs": "https://github.com/reegodev/envshare/issues",
+  "bugs": "https://github.com/reegodev/confidante/issues",
   "keywords": [
-    "oclif"
+    "confidante",
+    "share environment",
+    "share secrets",
+    "secrets",
+    ".env",
+    "dotenv"
   ],
   "types": "dist/index.d.ts"
 }
