@@ -15,15 +15,19 @@ npx confidante --help
 npx confidante push [FILEPATH] [ENTRYNAME] [-a <adapter>] [-v <vault>]
 ```
 
+> For all available arguments and flags type `npx confidante push --help`
+
 ### Pull an environment file from the password manager
 
 ```bash
 npx confidante pull [FILEPATH] [ENTRYNAME] [-a <adapter>] [-v <vault>]
 ```
 
+> For all available arguments and flags type `npx confidante pull --help`
+
 ## Shared configuration
 
-You use a shared configuration to omit command arguments.<br>
+You can use a shared configuration to omit command arguments.<br>
 Create a file named `.confidante.json` in the root of your project and add the following content:
 
 ```json
@@ -35,7 +39,7 @@ Create a file named `.confidante.json` in the root of your project and add the f
 }
 ```
 
-> You can also automatically generate the file when running the pull command with the -s flag.
+> You can also automatically generate the file when running the pull command with the -s or --save flag.
 
 Then your commands will be as simple as
   
