@@ -1,5 +1,7 @@
 # Confidante
-Share your environment files through password managers
+🔐 Share your environment files through password managers
+
+WARNING: This is still in early development, expect bugs and breaking changes!
 
 ## Quick Start
 
@@ -9,7 +11,7 @@ npx confidante --help
 
 ## Usage
 
-### Push an environment file to the password manager
+### Push an environment file to your password manager
 
 ```bash
 npx confidante push [FILEPATH] [ENTRYNAME] [-a <adapter>] [-v <vault>]
@@ -17,7 +19,7 @@ npx confidante push [FILEPATH] [ENTRYNAME] [-a <adapter>] [-v <vault>]
 
 > For all available arguments and flags type `npx confidante push --help`
 
-### Pull an environment file from the password manager
+### Pull an environment file from your password manager
 
 ```bash
 npx confidante pull [FILEPATH] [ENTRYNAME] [-a <adapter>] [-v <vault>]
