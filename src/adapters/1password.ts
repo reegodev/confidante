@@ -1,43 +1,44 @@
-import {BaseAdapter} from './base'
-import {Config} from '../base-command'
+import { Adapter } from '../base-adapter'
+import { Config } from '../base-command'
 
-export default class OnePasswordAdapter extends BaseAdapter {
+export default class OnePasswordAdapter extends Adapter {
+
   async push(config: Config): Promise<void> {
-    if (!await this.vaultExists(config.vault)) {
-      throw new Error(`Vault ${config.vault} does not exist`)
+    const vaultExists = await this.vaultExists(config.vault)
+    if (!vaultExists) {
+      throw new Error(`Vault "${config.vault}" does not exist`)
     }
 
     const item = await this.getItem(config)
-    await (item ? this.updateItem(item.id, config) : this.createItem(config))
+    if (item) {
+      await this.updateItem(item.id, config)
+    } else {
+      this.createItem(config)
+    }
   }
 
   async pull(config: Config): Promise<void> {
-    if (!await this.vaultExists(config.vault)) {
-      throw new Error(`Vault ${config.vault} does not exist`)
+    const vaultExists = await this.vaultExists(config.vault)
+    if (!vaultExists) {
+      throw new Error(`Vault "${config.vault}" does not exist`)
     }
 
     const item = await this.getItem(config)
     if (!item) {
-      throw new Error(`Entry ${config.entryName} does not exist`)
+      throw new Error(`Entry "${config.entryName}" does not exist`)
     }
 
-    const fileContents = item.fields.find((field: any) => field.id === 'notesPlain').value
+    const fileContents = item.fields.find((field: any) => field.id === 'notesPlain')?.value
     if (!fileContents) {
-      throw new Error(`Entry ${config.entryName} does not have any notes`)
+      throw new Error(`Entry "${config.entryName}" does not contain any notes`)
     }
 
-    await this.setFileContents(config.filePath, fileContents)
+    await this.writeFile(config.filePath, fileContents)
   }
 
   protected async vaultExists(name: string): Promise<boolean> {
     try {
-      await this.runCommand('op', [
-        'vault',
-        'get',
-        name,
-        '--format',
-        'json',
-      ])
+      await this.runCommand('op', ['vault', 'get', name, '--format', 'json'])
 
       return true
     } catch {
@@ -46,7 +47,7 @@ export default class OnePasswordAdapter extends BaseAdapter {
   }
 
   protected async createItem(config: Config): Promise<void> {
-    const fileContents = this.getFileContents(config.filePath)
+    const fileContents = this.readFile(config.filePath)
 
     await this.runCommand('op', [
       'item',
@@ -62,7 +63,7 @@ export default class OnePasswordAdapter extends BaseAdapter {
   }
 
   protected async updateItem(itemId: string, config: Config): Promise<void> {
-    const fileContents = this.getFileContents(config.filePath)
+    const fileContents = this.readFile(config.filePath)
 
     await this.runCommand('op', [
       'item',

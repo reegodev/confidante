@@ -1,8 +1,10 @@
-import {Command} from '@oclif/core'
-import {readFileSync, realpathSync, writeFileSync} from 'node:fs'
-import {AdapterName, adapters, BaseAdapter} from './adapters'
+import { Command } from '@oclif/core'
+import { readFileSync, realpathSync, writeFileSync } from 'node:fs'
+import path = require('node:path')
+import { AdapterName, adapters } from './adapters'
+import { Adapter } from './base-adapter'
 
-const CONFIG_NAME = '.confidante.json'
+export const CONFIG_NAME = '.confidante.json'
 
 export interface Config {
   adapter: AdapterName
@@ -14,33 +16,38 @@ export interface Config {
 export const defaultConfig: Config = {
   adapter: '1password',
   vault: '',
-  filePath: '.env',
+  filePath: '',
   entryName: '',
 }
 
 export abstract class BaseCommand extends Command {
+  getConfigPath(): string {
+    return process.cwd()
+  }
+
   getConfig(): Config {
-    let configPath = ''
     let config = defaultConfig
+
+    let configFilePath = ''
     try {
-      configPath = realpathSync(`${process.cwd()}/${CONFIG_NAME}`)
+      configFilePath = realpathSync(path.join(this.getConfigPath(), CONFIG_NAME))
     } catch {
-      // do nothing
+      // noop
     }
 
-    if (configPath) {
+    if (configFilePath) {
       try {
-        config = JSON.parse(readFileSync(configPath, 'utf8'))
+        config = JSON.parse(readFileSync(configFilePath, 'utf8'))
       } catch {
-        this.warn(`Config file at ${configPath} is invalid. Using default config.`)
+        this.warn(`Config file at ${configFilePath} is invalid. Using default config.`)
       }
     }
 
     return config
   }
 
-  setConfig(config: Config): void {
-    writeFileSync(`${process.cwd()}/${CONFIG_NAME}`, JSON.stringify(config, null, 2))
+  saveConfig(config: Config): void {
+    writeFileSync(path.join(this.getConfigPath(), CONFIG_NAME), JSON.stringify(config, null, 2))
   }
 
   validateConfig(partialConfig: Partial<Config>): Config {
@@ -75,12 +82,13 @@ export abstract class BaseCommand extends Command {
     return mergedConfig
   }
 
-  getAdapter(adapterName: AdapterName): BaseAdapter {
-    if (!adapters[adapterName]) {
-      this.error(`Adapter ${adapterName} not found`)
+  getAdapter(adapterName: AdapterName): Adapter {
+    const AdapterClass = adapters[adapterName]
+
+    if (!AdapterClass) {
+      this.error(`Adapter "${adapterName}" not found`)
     }
 
-    const adapter = new adapters[adapterName]()
-    return adapter
+    return new AdapterClass()
   }
 }

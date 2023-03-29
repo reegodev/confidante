@@ -1,7 +1,5 @@
-# Confidante
-🔐 Share your environment files through password managers
-
-WARNING: This is still in early development, expect bugs and breaking changes!
+# 🔐 Confidante
+Share your environment files through password managers
 
 ## Quick Start
 
