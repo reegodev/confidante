@@ -1,3 +1,5 @@
+[![npm](https://img.shields.io/npm/v/confidante)](https://www.npmjs.com/package/confidante)
+
 # 🔐 Confidante
 Share your environment files through password managers
 

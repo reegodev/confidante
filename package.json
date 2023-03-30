@@ -14,7 +14,9 @@
     "/bin",
     "/dist",
     "/npm-shrinkwrap.json",
-    "/oclif.manifest.json"
+    "/oclif.manifest.json",
+    "README.md",
+    "package.json"
   ],
   "dependencies": {
     "@oclif/core": "^2",

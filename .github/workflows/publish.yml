@@ -1,12 +1,10 @@
-name: Unit tests
-
+name: Publish to NPM
 on:
-  push:
-  pull_request:
-
+  release:
+    types: [created]
 jobs:
   build:
-
+    
     runs-on: ubuntu-latest
 
     strategy:
@@ -46,10 +44,13 @@ jobs:
     - name: Install dependencies
       run: pnpm install
 
-    - name: Unit tests
-      run: pnpm coverage
+    - name: Build package
+      run: pnpm build
 
-    - name: Upload coverage reports to Codecov
-      uses: codecov/codecov-action@v3
-      with:
-        token: ${{ secrets.CODECOV_TOKEN }}
+    - name: Set publish config
+      run: pnpm config set '//registry.npmjs.org/:_authToken' "${NODE_AUTH_TOKEN}"
+      env:
+        NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+
+    - name: Publish package on NPM
+      run: pnpm publish --access=public
