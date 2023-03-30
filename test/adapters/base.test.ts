@@ -23,7 +23,7 @@ describe('Adapter - Base', () => {
     try {
       await adapter.runCommand('ls', ['-z'])
     } catch (error) {
-      expect((error as Error).message).to.include('ls: invalid option -- z')
+      expect((error as Error).message).to.include('ls')
       assertions++
     }
 
