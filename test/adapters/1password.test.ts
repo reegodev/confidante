@@ -5,6 +5,54 @@ import { Adapter } from '../../src/base-adapter'
 import OnePasswordAdapter from '../../src/adapters/1password'
 
 describe('Adapter - 1password', () => {
+  test
+    .stub(Adapter.prototype, 'runCommand', () => {
+      throw new Error('Vault not found')
+    })
+    .it('checks if the vault does not exist', async () => {
+      const adapter = new OnePasswordAdapter()
+      const exists = await adapter.vaultExists('My vault');
+      expect(exists).to.eq(false)
+    })
+
+  test
+    .stub(Adapter.prototype, 'runCommand', () => {})
+    .it('checks if the vault exists', async () => {
+      const adapter = new OnePasswordAdapter()
+      const exists = await adapter.vaultExists('My vault');
+      expect(exists).to.eq(true)
+    })
+
+  test
+    .stub(Adapter.prototype, 'runCommand', () => {
+      throw new Error('Item not found')
+    })
+    .it('returns null if an item does not exist', async () => {
+      const adapter = new OnePasswordAdapter()
+      const item = await adapter.getItem({
+        vault: 'My vault',
+        adapter: '1password',
+        entryName: 'My local .env',
+        filePath: '.env'
+      });
+      expect(item).to.eq(null)
+    })
+
+  test
+    .stub(Adapter.prototype, 'runCommand', () => {
+      return JSON.stringify({ foo: 'bar' })
+    })
+    .it('returns the item contents if it exists', async () => {
+      const adapter = new OnePasswordAdapter()
+      const item = await adapter.getItem({
+        vault: 'My vault',
+        adapter: '1password',
+        entryName: 'My local .env',
+        filePath: '.env'
+      });
+      expect(item).to.eql({ foo: 'bar' })
+    })
+
   describe('pull', () => {
     test
       .stub(OnePasswordAdapter.prototype, 'vaultExists', () => false)
@@ -76,6 +124,20 @@ describe('Adapter - 1password', () => {
   })
 
   describe('push', () => {
+    test
+      .stub(OnePasswordAdapter.prototype, 'vaultExists', () => false)
+      .do(async () => {
+        const adapter = new OnePasswordAdapter()
+        await adapter.push({
+          vault: 'My vault',
+          adapter: '1password',
+          entryName: 'My local .env',
+          filePath: '.env'
+        })
+      })
+      .catch('Vault "My vault" does not exist')
+      .it('throws an error if the vault does not exist')
+
     test
       .stub(OnePasswordAdapter.prototype, 'vaultExists', () => true)
       .stub(OnePasswordAdapter.prototype, 'getItem', () => null)

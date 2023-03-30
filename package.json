@@ -35,6 +35,7 @@
     "eslint-config-prettier": "^8.8.0",
     "lodash": "^4.17.21",
     "mocha": "^9",
+    "nyc": "^15.1.0",
     "oclif": "^3",
     "prettier": "^2.8.7",
     "shx": "^0.3.3",
@@ -58,6 +59,7 @@
     "posttest": "pnpm lint",
     "prepack": "pnpm build && oclif manifest && oclif readme",
     "test": "mocha \"test/**/*.test.ts\"",
+    "coverage": "nyc --reporter=lcov pnpm test",
     "version": "oclif readme && git add README.md"
   },
   "types": "dist/index.d.ts",

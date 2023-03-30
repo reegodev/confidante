@@ -59,10 +59,6 @@ export abstract class BaseCommand extends Command {
       entryName: partialConfig.entryName || defaultConfig.entryName,
     }
 
-    if (!mergedConfig.adapter) {
-      this.error('No adapter specified')
-    }
-
     if (!adapters[mergedConfig.adapter]) {
       this.error(`Adapter ${mergedConfig.adapter} not found`)
     }

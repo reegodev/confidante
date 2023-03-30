@@ -29,9 +29,9 @@ npx confidante pull [FILEPATH] [ENTRYNAME] [-a <adapter>] [-v <vault>]
 
 - 1Password: To use this adapter, you need to install the [1Password CLI](https://1password.com/downloads/command-line/) and setup either [Manual login](https://developer.1password.com/docs/cli/sign-in-manually) or [Biometric unlock](https://developer.1password.com/docs/cli/about-biometric-unlock)
 
-## Shared configuration
+## Config
 
-You can use a shared configuration to omit command arguments.<br>
+You can use a configuration file to omit command arguments.<br>
 Create a file named `.confidante.json` at the root of your project and add the following content:
 
 ```json

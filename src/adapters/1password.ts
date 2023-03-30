@@ -36,7 +36,7 @@ export default class OnePasswordAdapter extends Adapter {
     await this.writeFile(config.filePath, fileContents)
   }
 
-  protected async vaultExists(name: string): Promise<boolean> {
+  async vaultExists(name: string): Promise<boolean> {
     try {
       await this.runCommand('op', ['vault', 'get', name, '--format', 'json'])
 
@@ -46,7 +46,7 @@ export default class OnePasswordAdapter extends Adapter {
     }
   }
 
-  protected async createItem(config: Config): Promise<void> {
+  async createItem(config: Config): Promise<void> {
     const fileContents = this.readFile(config.filePath)
 
     await this.runCommand('op', [
@@ -62,7 +62,7 @@ export default class OnePasswordAdapter extends Adapter {
     ])
   }
 
-  protected async updateItem(itemId: string, config: Config): Promise<void> {
+  async updateItem(itemId: string, config: Config): Promise<void> {
     const fileContents = this.readFile(config.filePath)
 
     await this.runCommand('op', [
@@ -77,7 +77,7 @@ export default class OnePasswordAdapter extends Adapter {
     ])
   }
 
-  protected async getItem(config: Config): Promise<any> {
+  async getItem(config: Config): Promise<any> {
     try {
       const result = await this.runCommand('op', [
         'item',
