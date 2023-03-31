@@ -53,4 +53,4 @@ jobs:
         NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
 
     - name: Publish package on NPM
-      run: pnpm publish --access=public
+      run: pnpm publish --access=public --no-git-checks
