@@ -1,7 +1,12 @@
 [![npm](https://img.shields.io/npm/v/confidante)](https://www.npmjs.com/package/confidante)
+[![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/reegodev/confidante/unit-tests.yml)](https://github.com/reegodev/confidante/actions)
+[![codecov](https://codecov.io/gh/reegodev/confidante/branch/main/graph/badge.svg?token=7SPPSMLVT4)](https://codecov.io/gh/reegodev/confidante)
 
 # 🔐 Confidante
-Share your environment files through password managers
+Securely share your environment files through password managers.
+
+Confidante is a wrapper around your favourite passoword manager's CLI and uses secure notes to store your local environment files remotely.<br>
+If you work in a small team, you can use Confidante as a source of truth to easily share you local secrets with your colleagues.
 
 ## Quick Start
 
