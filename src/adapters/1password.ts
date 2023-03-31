@@ -10,11 +10,7 @@ export default class OnePasswordAdapter extends Adapter {
     }
 
     const item = await this.getItem(config)
-    if (item) {
-      await this.updateItem(item.id, config)
-    } else {
-      this.createItem(config)
-    }
+    await (item ? this.updateItem(item.id, config) : this.createItem(config));
   }
 
   async pull(config: Config): Promise<void> {
@@ -41,7 +37,7 @@ export default class OnePasswordAdapter extends Adapter {
       await this.runCommand('op', ['vault', 'get', name, '--format', 'json'])
 
       return true
-    } catch {
+    } catch{
       return false
     }
   }

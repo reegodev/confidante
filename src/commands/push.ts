@@ -33,7 +33,7 @@ export default class Push extends BaseCommand {
     })
 
     const adapter = this.getAdapter(config.adapter)
-    adapter.push(config)
+    await adapter.push(config)
 
     this.exit()
   }
