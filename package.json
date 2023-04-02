@@ -25,6 +25,7 @@
   "devDependencies": {
     "@commander-js/extra-typings": "^10.0.3",
     "@types/node": "^16.18.20",
+    "@vitest/coverage-c8": "^0.29.8",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.8.0",
     "nyc": "^15.1.0",

@@ -1,6 +1,6 @@
 import { join } from 'path'
 import { describe, it, expect, afterEach, vi } from 'vitest'
-import config, { CONFIG_NAME, DEFAULT_CONFIG } from '../../src/config'
+import config, { Config, CONFIG_NAME, DEFAULT_CONFIG } from '../../src/config'
 import fs from '../../src/utils/fs'
 
 vi.mock('../../src/utils/fs')
@@ -13,7 +13,7 @@ describe('Config', () => {
 
   it('merges config files', async () => {
     const baseConfig = {
-      adapter: 'a',
+      adapter: 'a' as any,
       vault: 'v',
       entryName: 'e',
       filePath: 'f',
@@ -21,7 +21,7 @@ describe('Config', () => {
     let merged = config.merge({}, baseConfig)
     expect(merged).toStrictEqual(baseConfig)
 
-    merged = config.merge({ adapter: 'aa' }, baseConfig)
+    merged = config.merge({ adapter: 'aa' as any }, baseConfig)
     expect(merged).toStrictEqual({
       ...baseConfig,
       adapter: 'aa',
@@ -49,7 +49,7 @@ describe('Config', () => {
   it('validates the config', () => {
     expect(() =>
       config.validate({
-        adapter: '',
+        adapter: '' as any,
         vault: '',
         filePath: '',
         entryName: '',
@@ -58,7 +58,7 @@ describe('Config', () => {
 
     expect(() =>
       config.validate({
-        adapter: 'foo',
+        adapter: 'foo' as any,
         vault: '',
         filePath: '',
         entryName: '',

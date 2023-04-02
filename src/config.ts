@@ -1,8 +1,9 @@
 import { join } from 'node:path'
 import fs from './utils/fs'
+import adapters from './adapters'
 
 export interface Config {
-  adapter: string
+  adapter: keyof typeof adapters
   vault: string
   filePath: string
   entryName: string
@@ -11,15 +12,11 @@ export interface Config {
 export const CONFIG_NAME = '.confidante.json'
 export const CONFIG_PATH = process.cwd()
 export const DEFAULT_CONFIG = {
-  adapter: '1password',
+  adapter: '1password' as const,
   vault: '',
   filePath: '',
   entryName: '',
 }
-
-const adapters = {
-  '1password': {},
-} as Record<string, unknown>
 
 const config = {
   merge(providedConfig: Partial<Config>, baseConfig: Config): Config {

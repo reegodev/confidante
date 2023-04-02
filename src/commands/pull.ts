@@ -1,10 +1,11 @@
-import { Command } from '@commander-js/extra-typings'
+import { Command, Option } from '@commander-js/extra-typings'
 import config from '../config'
+import adapters , { adapterNames } from '../adapters'
 
 export default new Command('pull')
   .argument('[filePath]')
   .argument('[entryName]')
-  .option('-a, --adapter <adapter>', 'Adapter to use')
+  .addOption(new Option('-a, --adapter <adapter>', 'Adapter to use').choices(adapterNames))
   .option('-v, --vault <vault>', 'Vault name')
   .option('-s, --save', 'Save the configuration')
   .action(async (filePath, entryName, options) => {
@@ -18,4 +19,7 @@ export default new Command('pull')
     if (options.save) {
       await config.save(runtimeConfig)
     }
+
+    const adapter = adapters[runtimeConfig.adapter]
+    await adapter.pull(runtimeConfig)
   })
