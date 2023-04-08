@@ -32,11 +32,23 @@ npx confidante pull [FILEPATH] [ENTRYNAME] [-a <adapter>] [-v <vault>]
 
 > For all available arguments and flags type `npx confidante pull --help`
 
-## Available adapters
+## Adapters
+
+Adapters are used to create a standardized interface between Confidante and password managers.<br>
+Available adapters:  
 
 - 1Password: To use this adapter, you need to install the [1Password CLI](https://1password.com/downloads/command-line/) and setup either [Manual login](https://developer.1password.com/docs/cli/sign-in-manually) or [Biometric unlock](https://developer.1password.com/docs/cli/about-biometric-unlock)
 
-## Config
+Adapters on the roadmap:
+
+- LastPass
+- Bitwarden
+- Dashlane
+
+If you wish to use Confidante with a password manager not mentioned in the list, feel free to open an issue!
+
+
+## Configuration
 
 You can use a configuration file to omit command arguments.<br>
 Create a file named `.confidante.json` at the root of your project and add the following content:
@@ -45,7 +57,7 @@ Create a file named `.confidante.json` at the root of your project and add the f
 {
   "adapter": "<adapter name>",
   "vault": "<vault name>",
-  "filePath": "<file path of your environment, ie: .env>",
+  "filePath": "<file path of your environment, eg: .env>",
   "entryName": "<name of the entry in the password manager>"
 }
 ```
