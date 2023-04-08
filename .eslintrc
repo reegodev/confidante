@@ -1,7 +1,37 @@
 {
+  "root": true,
+  "env": {
+    "es6": true,
+    "node": true
+  },
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 2020,
+    "project": ["./tsconfig.json"]
+  },
+  "plugins": [
+    "@typescript-eslint"
+  ],
   "extends": [
-    "oclif",
-    "oclif-typescript",
-    "prettier"
-  ]
+    "airbnb-base",
+    "eslint:recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
+    "prettier",
+    "plugin:prettier/recommended",
+  ],
+  "rules": {
+    "import/no-anonymous-default-export": [
+      "error",
+      {
+        "allowArray": true,
+        "allowArrowFunction": false,
+        "allowAnonymousClass": false,
+        "allowAnonymousFunction": false,
+        "allowCallExpression": true,
+        "allowLiteral": true,
+        "allowObject": true
+      }
+    ]
+  }
 }
