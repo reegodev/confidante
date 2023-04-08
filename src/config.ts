@@ -1,9 +1,9 @@
 import { join } from 'node:path'
 import fs from './utils/fs'
-import adapters from './adapters'
+import { adapterNames } from './adapters'
 
 export interface Config {
-  adapter: keyof typeof adapters
+  adapter: typeof adapterNames[number]
   vault: string
   filePath: string
   entryName: string
@@ -33,7 +33,7 @@ const config = {
       throw new Error(`No adapter specified.`)
     }
 
-    if (!adapters[config.adapter]) {
+    if (!adapterNames.includes(config.adapter)) {
       throw new Error(`The adapter "${config.adapter}" does not exist.`)
     }
 
