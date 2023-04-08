@@ -10,9 +10,6 @@
     "resolveJsonModule": true
   },
   "include": [
-    "src/**/*"
-  ],
-  "references": [
-    { "path": "." }
+    "src/**/*",
   ]
 }

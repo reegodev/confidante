@@ -1,14 +1,13 @@
 import { describe, it, expect, afterEach, vi } from 'vitest'
-import OnePasswordAdapter from '../../../src/adapters/1password'
-import { CommandNotFoundError } from '../../../src/utils/errors'
-import cli from '../../../src/utils/cli'
-import { Config } from '../../../src/config'
-import fs from '../../../src/utils/fs'
+import OnePasswordAdapter from '../../src/adapters/1password'
+import cli from '../../src/utils/cli'
+import { Config } from '../../src/config'
+import fs from '../../src/utils/fs'
 
-vi.mock('../../../src/utils/fs')
+vi.mock('../../src/utils/fs')
 const mockedFs = vi.mocked(fs)
 
-vi.mock('../../../src/utils/cli', () => ({
+vi.mock('../../src/utils/cli', () => ({
   default: {
     run: vi.fn(),
   }

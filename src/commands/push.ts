@@ -1,6 +1,6 @@
 import { Command, Option } from '@commander-js/extra-typings'
 import config from '../config'
-import adapters , { adapterNames } from '../adapters'
+import { adapterNames, getAdapter } from '../adapters'
 
 export default new Command('push')
   .argument('[filePath]')
@@ -15,6 +15,5 @@ export default new Command('push')
       vault: options.vault,
     })
 
-    const adapter = adapters[runtimeConfig.adapter]
-    await adapter.push(runtimeConfig)
+    await getAdapter(runtimeConfig.adapter).push(runtimeConfig)
   })

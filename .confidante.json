@@ -1,6 +1,0 @@
-{
-  "adapter": "1password",
-  "vault": "foo",
-  "filePath": ".env",
-  "entryName": "My local file"
-}

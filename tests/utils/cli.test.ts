@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest'
-import cli from '../../../src/utils/cli'
-import { CommandNotFoundError } from '../../../src/utils/errors'
+import cli from '../../src/utils/cli'
+import { CommandNotFoundError } from '../../src/utils/errors'
 
 describe('Utils - CLI', () => {
   it('runs a command and pipes stdout', async () => {

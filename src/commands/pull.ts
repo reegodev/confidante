@@ -1,6 +1,6 @@
-import { Command, Option } from '@commander-js/extra-typings'
+import { Command, CommanderError, Option } from '@commander-js/extra-typings'
 import config from '../config'
-import adapters , { adapterNames } from '../adapters'
+import { adapterNames, getAdapter } from '../adapters'
 
 export default new Command('pull')
   .argument('[filePath]')
@@ -16,10 +16,9 @@ export default new Command('pull')
       vault: options.vault,
     })
 
+    await getAdapter(runtimeConfig.adapter).pull(runtimeConfig)
+
     if (options.save) {
       await config.save(runtimeConfig)
     }
-
-    const adapter = adapters[runtimeConfig.adapter]
-    await adapter.pull(runtimeConfig)
   })

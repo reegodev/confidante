@@ -1,9 +1,9 @@
 import { join } from 'path'
 import { describe, it, expect, afterEach, vi } from 'vitest'
-import config, { Config, CONFIG_NAME, DEFAULT_CONFIG } from '../../src/config'
-import fs from '../../src/utils/fs'
+import config, { Config, CONFIG_NAME, DEFAULT_CONFIG } from '../src/config'
+import fs from '../src/utils/fs'
 
-vi.mock('../../src/utils/fs')
+vi.mock('../src/utils/fs')
 const mockedFs = vi.mocked(fs)
 
 describe('Config', () => {
