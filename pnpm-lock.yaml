@@ -16,10 +16,10 @@ specifiers:
   vitest: ^0.29.8
 
 dependencies:
+  '@commander-js/extra-typings': 10.0.3_commander@10.0.0
   commander: 10.0.0
 
 devDependencies:
-  '@commander-js/extra-typings': 10.0.3_commander@10.0.0
   '@types/node': 16.18.23
   '@vitest/coverage-c8': 0.29.8_vitest@0.29.8
   eslint: 7.32.0
@@ -253,7 +253,7 @@ packages:
       commander: 10.0.x
     dependencies:
       commander: 10.0.0
-    dev: true
+    dev: false
 
   /@cspotcode/source-map-support/0.8.1:
     resolution: {integrity: sha512-IchNf6dN4tHoMFIn/7OE8LWZ19Y6q/67Bmf6vnGREv8RSbBVb9LPJxEcnwrcwX6ixSvaiGoomAUvu4YSxXrVgw==}
@@ -906,6 +906,7 @@ packages:
   /commander/10.0.0:
     resolution: {integrity: sha512-zS5PnTI22FIRM6ylNW8G4Ap0IEOyk62fhLSD0+uHRT9McRCLGpkVNvao4bjimpK/GShynyQkFFxHhwMcETmduA==}
     engines: {node: '>=14'}
+    dev: false
 
   /commondir/1.0.1:
     resolution: {integrity: sha512-W9pAhw0ja1Edb5GVdIF1mjZw/ASI0AlShXM83UUGe2DVr5TdAPEA1OA8m/g8zWp9x6On7gqufY+FatDbC3MDQg==}
