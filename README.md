@@ -14,6 +14,13 @@ If you work in a small team, you can use Confidante as a source of truth to easi
 npx confidante --help
 ```
 
+or if you need to update to the latest version
+
+```bash
+npx confidante@latest --help
+```
+
+
 ## Usage
 
 ### Push an environment file to your password manager
