@@ -14,11 +14,9 @@ specifiers:
   ts-node: ^10.9.1
   typescript: ^4.9.5
   vitest: ^0.29.8
-  walkdir: ^0.4.1
 
 dependencies:
   commander: 10.0.0
-  walkdir: 0.4.1
 
 devDependencies:
   '@commander-js/extra-typings': 10.0.3_commander@10.0.0
@@ -2391,11 +2389,6 @@ packages:
       - supports-color
       - terser
     dev: true
-
-  /walkdir/0.4.1:
-    resolution: {integrity: sha512-3eBwRyEln6E1MSzcxcVpQIhRG8Q1jLvEqRmCZqS3dsfXEDR/AhOF4d+jHg1qvDCpYaVRZjENPQyrVxAkQqxPgQ==}
-    engines: {node: '>=6.0.0'}
-    dev: false
 
   /which-module/2.0.0:
     resolution: {integrity: sha512-B+enWhmw6cjfVC7kS8Pj9pCrKSc5txArRyaYGe088shv/FGWH+0Rjx/xPgtsWfsUtS27FkP697E4DDhgrgoc0Q==}

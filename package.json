@@ -1,7 +1,7 @@
 {
   "name": "confidante",
-  "version": "0.2.2",
-  "description": "Share your environment files through password managers",
+  "version": "0.2.3",
+  "description": "🔐 Securely share your environment files through password managers",
   "author": "Matteo Rigon @reegodev",
   "bin": {
     "confidante": "./bin/run"
@@ -13,14 +13,12 @@
   "files": [
     "/bin",
     "/dist",
-    "/npm-shrinkwrap.json",
-    "/oclif.manifest.json",
     "README.md",
-    "package.json"
+    "package.json",
+    "pnpm-lock.yaml"
   ],
   "dependencies": {
-    "commander": "^10.0.0",
-    "walkdir": "^0.4.1"
+    "commander": "^10.0.0"
   },
   "devDependencies": {
     "@commander-js/extra-typings": "^10.0.3",
