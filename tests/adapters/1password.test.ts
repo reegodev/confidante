@@ -10,6 +10,11 @@ const mockedFs = vi.mocked(fs)
 vi.mock('../../src/utils/cli', () => ({
   default: {
     run: vi.fn(),
+    info: vi.fn(),
+    error: vi.fn(),
+    log: vi.fn(),
+    spinner: vi.fn(),
+    outputConfiguration: vi.fn(),
   }
 }))
 const mockedCli = vi.mocked(cli)
@@ -30,9 +35,14 @@ describe('Adapters - 1password', () => {
     let exists = await OnePasswordAdapter.vaultExists('My vault')
     expect(exists).toBe(true)
 
-    mockedCli.run.mockRejectedValueOnce(new Error('foo'))
+    mockedCli.run.mockRejectedValueOnce(new Error('The "foo" vault in this account does not exist'))
     exists = await OnePasswordAdapter.vaultExists('My vault')
     expect(exists).toBe(false)
+
+    mockedCli.run.mockRejectedValueOnce(new Error('foo'))
+    expect(async () => {
+      await OnePasswordAdapter.vaultExists('My vault')
+    }).rejects.toThrow('foo')
   })
 
   it('creates an item in the vault', async () => {
@@ -91,7 +101,7 @@ describe('Adapters - 1password', () => {
   describe('push', () => {
     it('throws an error if the vault does not exist while pushing', async () => {
       mockedCli.run
-        .mockRejectedValueOnce(new Error('foo')) // vaultExists
+        .mockRejectedValueOnce(new Error('The "foo" vault in this account does not exist')) // vaultExists
   
       expect(async () => {
         await OnePasswordAdapter.push(config)
@@ -165,7 +175,7 @@ describe('Adapters - 1password', () => {
   describe('pull', () => {
     it('throws an error if the vault does not exist', async () => {
       mockedCli.run
-        .mockRejectedValueOnce(new Error('foo')) // vaultExists
+        .mockRejectedValueOnce(new Error('The "foo" vault in this account does not exist')) // vaultExists
   
       expect(async () => {
         await OnePasswordAdapter.pull(config)

@@ -1,6 +1,7 @@
 import type { Adapter } from '.'
 import { Config } from '../config'
 import cli from '../utils/cli'
+import { CommandNotFoundError } from '../utils/errors'
 import fs from '../utils/fs'
 
 const OnePasswordAdapter = {
@@ -9,8 +10,12 @@ const OnePasswordAdapter = {
       await cli.run('op', ['vault', 'get', name, '--format', 'json'])
 
       return true
-    } catch{
-      return false
+    } catch (err) {
+      if (err instanceof Error && err.message.includes('vault in this account')) {
+        return false
+      }
+      
+      throw err
     }
   },
 
@@ -57,7 +62,11 @@ const OnePasswordAdapter = {
         'json',
       ])
       return JSON.parse(result)
-    } catch {
+    } catch (err) {
+      if (err instanceof CommandNotFoundError) {
+        throw err
+      }
+
       return null
     }
   },

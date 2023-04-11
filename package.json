@@ -18,8 +18,10 @@
     "pnpm-lock.yaml"
   ],
   "dependencies": {
+    "@commander-js/extra-typings": "^10.0.3",
+    "chalk": "^4.0.0",
     "commander": "^10.0.0",
-    "@commander-js/extra-typings": "^10.0.3"
+    "figures": "^3.0.0"
   },
   "devDependencies": {
     "@types/node": "^16.18.20",
