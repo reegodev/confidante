@@ -1,6 +1,6 @@
 {
   "name": "confidante",
-  "version": "0.2.4",
+  "version": "0.3.0",
   "description": "🔐 Securely share your environment files through password managers",
   "author": "Matteo Rigon @reegodev",
   "bin": {
