@@ -21,7 +21,7 @@ export class CommandNotFoundError extends CommanderError {
   command: string
 
   constructor(command: string) {
-    super(1, 'CMD_NOT_FOUND', `Command "${command}" not found. Did you forget to install your password manager's CLI?"`)
+    super(1, 'CMD_NOT_FOUND', `Command "${command}" not found. Did you forget to install your password manager's CLI?`)
     this.command = command
   }
 }

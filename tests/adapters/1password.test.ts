@@ -93,9 +93,14 @@ describe('Adapters - 1password', () => {
       'json',
     ])
 
-    mockedCli.run.mockRejectedValueOnce(new Error('foo'))
+    mockedCli.run.mockRejectedValueOnce(new Error('"foo" isn\'t an item in the "Test" vault'))
     result = await OnePasswordAdapter.getItem(config)
     expect(result).toBe(null)
+
+    mockedCli.run.mockRejectedValueOnce(new Error('foo'))
+    expect(async () => {
+      await OnePasswordAdapter.getItem(config)
+    }).rejects.toThrow('foo')
   })
 
   describe('push', () => {
@@ -112,7 +117,7 @@ describe('Adapters - 1password', () => {
       mockedFs.read.mockResolvedValueOnce('test read')
       mockedCli.run
         .mockResolvedValueOnce('vault exists') // vaultExists
-        .mockRejectedValueOnce(new Error('item does not exist')) // getItem
+        .mockRejectedValueOnce(new Error('"foo" isn\'t an item in the "Test" vault')) // getItem
         .mockResolvedValueOnce('created') // createItem
   
       await OnePasswordAdapter.push(config)
@@ -186,7 +191,7 @@ describe('Adapters - 1password', () => {
       mockedFs.read.mockResolvedValueOnce('test read')
       mockedCli.run
         .mockResolvedValueOnce('vault exists') // vaultExists
-        .mockRejectedValueOnce(new Error('foo')) // getItem
+        .mockRejectedValueOnce(new Error('"foo" isn\'t an item in the "Test" vault')) // getItem
   
       expect(async () => {
         await OnePasswordAdapter.pull(config)

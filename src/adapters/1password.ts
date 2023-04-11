@@ -63,11 +63,11 @@ const OnePasswordAdapter = {
       ])
       return JSON.parse(result)
     } catch (err) {
-      if (err instanceof CommandNotFoundError) {
-        throw err
+      if (err instanceof Error && err.message.includes('isn\'t an item in the')) {
+        return null
       }
 
-      return null
+      throw err
     }
   },
 

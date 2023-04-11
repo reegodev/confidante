@@ -9,6 +9,7 @@ const spinnerConfig = {
   frames: ['⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏'],
   ref: null as NodeJS.Timer | null,
   currentFrame: 0,
+  /* c8 ignore next 3 */
   get frame() {
     return this.frames[this.currentFrame]
   }
@@ -42,9 +43,11 @@ const run = (name: string, args: string[] = []): Promise<string> => {
   })
 }
 
+/* c8 ignore start */
 const info = (message: string) => {
   process.stdout.write(`${chalk.cyan(figures.info)} ${message}`)
 }
+
 
 const error = (message: string) => {
   if (spinner.isSpinning()) {
@@ -100,6 +103,7 @@ const spinner = {
 const outputConfiguration = {
   writeErr: (str) => error(str),
 } as OutputConfiguration
+/* c8 ignore stop */
 
 export default {
   run,
