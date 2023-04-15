@@ -20,7 +20,7 @@
   "dependencies": {
     "@commander-js/extra-typings": "^10.0.3",
     "chalk": "^4.0.0",
-    "commander": "^10.0.0",
+    "commander": "^10.0.1",
     "figures": "^3.0.0"
   },
   "devDependencies": {
