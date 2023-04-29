@@ -29,7 +29,7 @@
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.8.0",
     "nyc": "^15.1.0",
-    "prettier": "^2.8.7",
+    "prettier": "^2.8.8",
     "shx": "^0.3.3",
     "stdout-stderr": "^0.1.13",
     "ts-node": "^10.9.1",
